@@ -1,0 +1,223 @@
+:root {
+    --dark-color: #232323;
+    --light-color: #F4F4F4;
+    --text-color: #F4F4F4;
+    --text-border-color: hsl(215, 85%, 65%);
+    --overlay-color: hsla(0, 0%, 14%, .7);
+
+    --finn-sword: url("https://i.ibb.co/t8Lj0Y6/Fin-sword.png");
+
+    /*
+        The "adventure slider" is fully scalable, so feel free to adjust it's size by changing the value of '--slider-size' in order to meet your demands :D
+    */
+
+    --slider-size: 1050px;
+    --slider-height: calc(var(--slider-size) / 480 * 110);
+
+    --text-size: calc(var(--slider-size) * .08);
+    --text-border-size: calc(var(--text-size) * .055);
+
+    --overlay-size: 100;
+
+    --thumb-size: calc(var(--slider-height) * .5);
+    --thumb-ear-size: calc(var(--thumb-size) * .35);
+
+    --thumb-face-size: calc(var(--thumb-size) * .75);
+    --thumb-skin-color: hsl(18, 81%, 85%);
+
+    --thumb-eye-size: calc(var(--thumb-face-size) * .15);
+    --thumb-eye-color: #000;
+
+    --thumb-mouth-width: calc(var(--thumb-face-size) * .35);
+    --thumb-mouth-height: calc(var(--thumb-mouth-width) * .6);
+    --thumb-mouth-color: hsl(18, 100%, 25%);
+
+    --thumb-tooth-width: calc(var(--thumb-mouth-height) * .3);
+    --thumb-tooth-height: calc(var(--thumb-mouth-height) * .35);
+
+    --thumb-tongue-width: calc(var(--thumb-mouth-width) * .65);
+    --thumb-tongue-height: calc(var(--thumb-mouth-height) * .45);
+    --thumb-tongue-color: hsl(357, 85%, 79%);
+}
+* {
+    margin: 0;
+    padding: 0;
+    outline: none;
+}
+body {
+    background-color: var(--dark-color);
+}
+h2.adventure-header {
+    position: absolute;
+    width: calc(100% + calc(var(--thumb-size) * .5));
+    bottom: calc(var(--slider-size) * .065 * -2.75);
+    left: calc(var(--thumb-size) * -.5);
+    text-align: center;
+    font-family: Helvetica, sans-serif;
+    color: var(--text-color);
+    font-size: var(--text-size);
+    user-select: none;
+    text-shadow: 
+        var(--text-border-size) 0 0 var(--text-border-color),
+        calc(var(--text-border-size) * -1) 0 0 var(--text-border-color),
+        0 var(--text-border-size) 0 var(--text-border-color),
+        0 calc(var(--text-border-size) * -1) 0 var(--text-border-color),
+        calc(var(--text-border-size) * .5) calc(var(--text-border-size) * .5) var(--text-border-color),
+        calc(var(--text-border-size) * -.5) calc(var(--text-border-size) * -.5) 0 var(--text-border-color),
+        calc(var(--text-border-size) * .5) calc(var(--text-border-size) * -.5) 0 var(--text-border-color),
+        calc(var(--text-border-size) * -.5) calc(var(--text-border-size) * .5) 0 var(--text-border-color);
+}
+.align-middle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.slider-container > input[type='range'] {
+    display: none;
+}
+.slider-container > .adventure-slider {
+    position: relative;
+    width: var(--slider-size);
+    height: var(--slider-height);
+    background: var(--finn-sword);
+    background-size: cover;
+    /* overflow: hidden; */
+}
+.slider-container > .adventure-slider::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: calc(var(--slider-size) * var(--overlay-size) / 100);
+    background-color: var(--overlay-color);
+}
+.slider-container > .adventure-slider > .thumb {
+    position: absolute;
+    top: 50%;
+    left: calc(
+        var(--slider-size) * 
+        calc(100 - var(--overlay-size)) / 100 - 
+        calc(var(--thumb-size) * .5)
+    );
+    transform: translateY(-50%);
+    width: var(--thumb-size);
+    height: var(--thumb-size);
+    background-color: var(--light-color);
+    border-radius: 50%;
+    z-index: 2;
+    cursor: grab;
+}
+.slider-container > .adventure-slider > .thumb.active {
+    cursor: grabbing !important;
+}
+.slider-container > .adventure-slider > .thumb::before,
+.slider-container > .adventure-slider > .thumb::after {
+    content: '';
+    position: absolute;
+    width: calc(var(--thumb-ear-size) * .75);
+    height: 0;
+    background-color: var(--light-color);
+    bottom: calc(var(--thumb-ear-size) * 2.1);
+    border-radius: 
+        calc(var(--thumb-size) / 7)
+        calc(var(--thumb-size) / 7)
+        calc(var(--thumb-size) / 34)
+        calc(var(--thumb-size) / 34);
+    transition: height 350ms ease;
+}
+.slider-container > .adventure-slider > .thumb.active::before,
+.slider-container > .adventure-slider > .thumb.active::after {
+    height: var(--thumb-ear-size);
+}
+.slider-container > .adventure-slider > .thumb::before {
+    left: calc(var(--thumb-ear-size) * .1);
+    transform: rotate(-9deg);
+}
+.slider-container > .adventure-slider > .thumb::after {
+    right: calc(var(--thumb-ear-size) * .1);
+    transform: rotate(9deg);
+}
+.slider-container > .adventure-slider > .thumb > .face {
+    position: relative;
+    width: var(--thumb-face-size);
+    height: var(--thumb-face-size);
+    background-color: var(--thumb-skin-color);
+    border-radius: 50%;
+    z-index: 3;
+}
+.slider-container > .adventure-slider > .thumb .eyes::before,
+.slider-container > .adventure-slider > .thumb .eyes::after {
+    content: '';
+    position: absolute;
+    top: calc(var(--thumb-ear-size) * .6);
+    width: var(--thumb-eye-size);
+    height: calc(var(--thumb-ear-size) * .1);
+    background-color: var(--thumb-eye-color);
+    border-radius: 25%;
+    transition: all 350ms ease;
+}
+.slider-container > .adventure-slider > .thumb.active .eyes::before,
+.slider-container > .adventure-slider > .thumb.active .eyes::after {
+    height: var(--thumb-eye-size);
+    border-radius: 50%;
+}
+.slider-container > .adventure-slider > .thumb .eyes::before {
+    left: calc(var(--thumb-eye-size) * 1.1);
+}
+.slider-container > .adventure-slider > .thumb .eyes::after {
+    right: calc(var(--thumb-eye-size) * 1.1);
+}
+.slider-container > .adventure-slider > .thumb .mouth {
+    position: absolute;
+    left: 50%;
+    bottom: calc(var(--thumb-mouth-height) * .9);
+    transform: translateX(-50%);
+    width: calc(var(--thumb-mouth-width) * .5);
+    height: calc(var(--thumb-mouth-height) * .35);
+    background-color: var(--thumb-mouth-color);
+    border-radius: 35%;
+    overflow: hidden;
+    transition: all 350ms ease;
+}
+.slider-container > .adventure-slider > .thumb.active .mouth {
+    width: var(--thumb-mouth-width);
+    height: var(--thumb-mouth-height);
+}
+.slider-container > .adventure-slider > .thumb .mouth::before, 
+.slider-container > .adventure-slider > .thumb .mouth::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    background-color: var(--light-color);
+    border-radius: 0 0 15% 15%;
+    transition: all 350ms ease;
+}
+.slider-container > .adventure-slider > .thumb.active .mouth::before, 
+.slider-container > .adventure-slider > .thumb.active .mouth::after {
+    width: var(--thumb-tooth-width);
+    height: var(--thumb-tooth-height);
+}
+.slider-container > .adventure-slider > .thumb .mouth::before {
+    left: 20%;
+}
+.slider-container > .adventure-slider > .thumb .mouth::after {
+    right: 20%;
+}
+.slider-container > .adventure-slider > .thumb .tongue {
+    position: absolute;
+    left: 50%;
+    width: 0;
+    height: 0;
+    transform: translateX(-50%);
+    background-color: var(--thumb-tongue-color);
+    bottom: calc(var(--thumb-tongue-height) * -.55);
+    border-radius: 35%;
+    transition: all 350ms ease;
+}
+.slider-container > .adventure-slider > .thumb.active .tongue {
+    width: var(--thumb-tongue-width);
+    height: var(--thumb-tongue-height);
+}
