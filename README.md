@@ -1,5 +1,5 @@
 ## Range slider inspirowany kreskówką o nazwie "Pora na przygodę!"
-### Slider pomimo działania poza granicami obszaru elementu
+### Slider pomimo działania poza granicami obszaru elementu:
 ```html
 <input type="range" min="0" max="100">
 ```
