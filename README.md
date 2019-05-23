@@ -4,12 +4,12 @@
 <input type="range" min="0" max="100">
 ```
 ### Uzyskuje dostęp do jego atrybutów min i max 
-
+---
 ### Rozmiar slidera jest w pełni uzależniony od niestandardowej właściwości:
 ```css
 --slider-size
 ```
-
+---
 ### Podgląd range slidera:
 #### Bez przeciągania
 ![Slider preview](https://i.ibb.co/wQXnnbv/slider-before.png)
