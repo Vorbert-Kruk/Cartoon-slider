@@ -8,6 +8,7 @@
 <input type="range" min="0" max="100">
 ```
 ### Uzyskuje dostęp do jego atrybutów min i max 
+---
 ### Podgląd range slidera:
 #### Bez przeciągania
 ![Slider preview](https://i.ibb.co/wQXnnbv/slider-before.png)
